@@ -270,6 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cinemachine: {fileID: 299513509}
+  _cameraPosition: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,6 +38,7 @@ namespace Code.Gameplay {
                 .Add(new BindCameraSystem())
                 .Add(new InputSystem())
                 .Add(new PlayerMoveSystem())
+                .Add(new PlayerAnimationMoveSystem())
 
                 // .Add (new TestSystem2 ())
                 

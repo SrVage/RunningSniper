@@ -7,7 +7,7 @@ namespace Code.Gameplay.Systems
     public sealed class BindCameraSystem:IEcsRunSystem
     {
         private readonly EcsFilter<GameObjectRef, PlayerTag, BindCameraTag> _player=null;
-        private readonly EcsFilter<Camera> _camera=null;
+        private readonly EcsFilter<Camera, TopTag> _camera=null;
         public void Run()
         {
             if (_player.IsEmpty())
