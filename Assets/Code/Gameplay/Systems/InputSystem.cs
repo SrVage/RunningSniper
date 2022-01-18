@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using Code.Components;
+﻿using Code.Components;
 using Leopotam.Ecs;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Camera = UnityEngine.Camera;
 
 namespace Code.Gameplay.Systems
@@ -15,10 +15,14 @@ namespace Code.Gameplay.Systems
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Physics.Raycast(ray, out hit, 50f);
-                if (hit.collider)
+                if (Physics.Raycast(ray, out hit, 50f))
                 {
-                    _world.NewEntity().Get<InputVector>().Value = hit.point;
+                    if (EventSystem.current.IsPointerOverGameObject())
+                        return;
+                    if (hit.collider)
+                    {
+                        _world.NewEntity().Get<InputVector>().Value = hit.point;
+                    }
                 }
             }
         }

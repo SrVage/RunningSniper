@@ -1,6 +1,6 @@
 using Leopotam.Ecs;
 
-namespace Code.LevelsLoader
+namespace Code.Components
 {
     public struct LoadLevelSignal:IEcsIgnoreInFilter
     {

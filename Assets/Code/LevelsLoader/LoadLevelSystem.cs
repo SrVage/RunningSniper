@@ -1,4 +1,5 @@
 using Code.Abstractions;
+using Code.Components;
 using Code.Configs;
 using Leopotam.Ecs;
 using UnityEngine;

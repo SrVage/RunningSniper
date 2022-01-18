@@ -7,10 +7,11 @@ namespace Code.Gameplay.Systems
     {
         private readonly EcsFilter<Navigation, PlayerTag> _player = null;
         private readonly EcsFilter<InputVector> _input = null;
+        private readonly EcsFilter<Attack> _attack = null;
 
         public void Run()
         {
-            if (_input.IsEmpty() || _player.IsEmpty())
+            if (_input.IsEmpty() || _player.IsEmpty() || !_attack.IsEmpty())
                 return;
             foreach (var idx in _input)
             {

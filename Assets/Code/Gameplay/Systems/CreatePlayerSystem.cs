@@ -28,6 +28,11 @@ namespace Code.Gameplay.Systems
             GameObject player = GameObject.Instantiate(_playerCfg.Prefab, position, Quaternion.identity);
             EcsEntity playerEntity = _world.NewEntity();
             player.GetComponent<MonoBehavioursEntity>().Initial(playerEntity, _world);
+            var childs = player.GetComponentsInChildren<MonoBehavioursEntity>();
+            foreach (var child in childs)
+            {
+                child.Initial(_world.NewEntity(), _world);
+            }
             playerEntity.Get<BindCameraTag>();
         }
     }

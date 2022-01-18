@@ -39,6 +39,8 @@ namespace Code.Gameplay {
                 .Add(new InputSystem())
                 .Add(new PlayerMoveSystem())
                 .Add(new PlayerAnimationMoveSystem())
+                .Add(new ChangeCameraSystem())
+                .Add(new ChangeFireButtonVisibleSystem())
 
                 // .Add (new TestSystem2 ())
                 
