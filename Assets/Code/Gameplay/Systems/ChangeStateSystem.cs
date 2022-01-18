@@ -8,8 +8,8 @@ namespace Code.Gameplay.Systems
 {
     public sealed class ChangeStateSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<TapToStart> _startLevelSignal;
-        private readonly EcsWorld _world;
+        private readonly EcsFilter<TapToStart> _startLevelSignal=null;
+        private readonly EcsWorld _world=null;
 
         public void Run()
         {

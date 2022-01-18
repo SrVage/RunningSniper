@@ -1,3 +1,4 @@
+using System;
 using Code.Abstractions;
 using Code.Components;
 using Leopotam.Ecs;
@@ -10,25 +11,24 @@ namespace Code.MonoBehavioursComponent
         private EcsWorld _world;
         private EcsEntity _entity;
 
-        public void Initial(EcsWorld world, EcsEntity entity)
+        public void Initial(EcsWorld world)
         {
             _world = world;
-            _entity = entity;
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponentInParent<EntityRef>())
             {
-                ref var entity = ref _world.NewEntity().Get<AttackTrigger>();
-                entity.Entity = other.GetComponentInParent<EntityRef>().Entity;
-                entity.Self = _entity;
+                _entity = _world.NewEntity();
+                _entity.Get<PositionForAttack>();
             }
-            else
-            {
-                ref var entity = ref _world.NewEntity().Get<AttackTrigger>();
-                entity.Self = _entity;
-            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (!_entity.IsNull())
+                _entity.Destroy();
         }
     }
 }

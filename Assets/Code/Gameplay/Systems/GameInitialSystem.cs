@@ -6,7 +6,7 @@ namespace Code.Gameplay.Systems
 {
     public sealed class GameInitialSystem:IEcsInitSystem
     {
-        private readonly EcsWorld _world;
+        private readonly EcsWorld _world=null;
         public void Init()
         {
             var objects = Object.FindObjectsOfType<MonoBehavioursEntity>();
