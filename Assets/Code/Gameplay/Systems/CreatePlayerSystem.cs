@@ -1,6 +1,7 @@
 ﻿using Code.Abstractions;
 using Code.Components;
 using Code.Configs;
+using Code.MonoBehavioursComponent;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ namespace Code.Gameplay.Systems
             {
                 ref var position = ref _spawn.Get1(sdx).Value;
                 CreatePlayer(position);
+                break;
             }
         }
 
@@ -31,6 +33,8 @@ namespace Code.Gameplay.Systems
             var childs = player.GetComponentsInChildren<MonoBehavioursEntity>();
             foreach (var child in childs)
             {
+                if (child as PlayerMonoBehaviour)
+                    continue;
                 child.Initial(_world.NewEntity(), _world);
             }
             playerEntity.Get<BindCameraTag>();

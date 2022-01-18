@@ -743,6 +743,7 @@ MonoBehaviour:
   _levels: {fileID: 11400000, guid: 9ff90c9b66ad36c46a4db84446a9ac06, type: 2}
   _uiScreen: {fileID: 11400000, guid: 99a8abbebb9b847798e15e57362e385f, type: 2}
   _playerCfg: {fileID: 11400000, guid: b6e6260dae58c2f49abd403c7057acc9, type: 2}
+  _enemyCfg: {fileID: 11400000, guid: 47e891324bf8d3142bc40c9665192b08, type: 2}
 --- !u!4 &2047205513
 Transform:
   m_ObjectHideFlags: 0

@@ -2,12 +2,14 @@ using Code.Components;
 using Code.Configs;
 using Code.Gameplay.Systems;
 using Code.LevelsLoader;
+using Code.MonoBehavioursComponent;
 using Code.StatesSwitcher;
 using Code.StatesSwitcher.Events;
 using Code.StatesSwitcher.States;
 using Code.UI.Systems;
 using Leopotam.Ecs;
 using UnityEngine;
+using Camera = UnityEngine.Camera;
 
 namespace Code.Gameplay {
     sealed class EcsStartup : MonoBehaviour {
@@ -17,6 +19,7 @@ namespace Code.Gameplay {
         [SerializeField] private LevelList _levels;
         [SerializeField] private UIScreen _uiScreen;
         [SerializeField] private PlayerCfg _playerCfg;
+        [SerializeField] private EnemyCfg _enemyCfg;
         void Start () {
             // void can be switched to IEnumerator for support coroutines.
             
@@ -35,12 +38,16 @@ namespace Code.Gameplay {
                 .Add(new LoadLevelSystem())
                 .Add(new ChangeScreenSystem())
                 .Add(new CreatePlayerSystem())
+                .Add(new CreateEnemySystem())
                 .Add(new BindCameraSystem())
-                .Add(new InputSystem())
+                .Add(new InputSystem(Camera.main))
                 .Add(new PlayerMoveSystem())
                 .Add(new PlayerAnimationMoveSystem())
                 .Add(new ChangeCameraSystem())
                 .Add(new ChangeFireButtonVisibleSystem())
+                .Add(new RotateAttackSystem())
+                .Add(new AttackSystem(Camera.main))
+                .Add(new EnableRagdollSystem())
 
                 // .Add (new TestSystem2 ())
                 
@@ -49,11 +56,13 @@ namespace Code.Gameplay {
                 .OneFrame<LoadLevelSignal> ()
                 .OneFrame<TapToStart>()
                 .OneFrame<InputVector>()
+                .OneFrame<InputVectorScreen>()
                 
                 // inject service instances here (order doesn't important), for example:
                 .Inject (_levels)
                 .Inject(_uiScreen)
                 .Inject(_playerCfg)
+                .Inject(_enemyCfg)
                 // .Inject (new NavMeshSupport ())
                 .Init ();
         }
