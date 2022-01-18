@@ -6,5 +6,6 @@ namespace Code.Configs
     public class PlayerCfg:ScriptableObject
     {
         public GameObject Prefab;
+        [Range(1, 7)] public float Speed;
     }
 }

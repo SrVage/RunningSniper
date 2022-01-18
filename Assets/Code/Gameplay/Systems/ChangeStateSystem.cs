@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Code.Gameplay.Systems
 
 {
-    public sealed class ChangeStateSystem : IEcsRunSystem
+    public sealed class ChangeStateSystem : IEcsRunSystem, IEcsInitSystem
     {
         private readonly EcsFilter<TapToStart> _startLevelSignal=null;
         private readonly EcsWorld _world=null;
@@ -28,7 +28,11 @@ namespace Code.Gameplay.Systems
             {
                 ChangeGameState.Change(GameStates.StartState);
             }
-            
+        }
+        
+        public void Init()
+        {
+            ChangeGameState.Change(GameStates.StartState);
         }
     }
 }

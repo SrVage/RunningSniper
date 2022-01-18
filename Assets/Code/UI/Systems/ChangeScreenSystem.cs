@@ -57,8 +57,6 @@ namespace Code.UI.Systems
             screen.GetComponent<UIEntity>().Initial(_world);
             foreach (var ui in _uiScreens)
             {
-                ref var scree = ref _uiScreens.Get1(ui).Screens;
-                scree = Screens.Win;
                 ref var go = ref _uiScreens.Get1(ui).Screen;
                 if (go != null&&destroyCurrent)
                     GameObject.Destroy(go);

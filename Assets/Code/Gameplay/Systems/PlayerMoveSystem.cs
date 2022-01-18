@@ -1,4 +1,5 @@
 ﻿using Code.Components;
+using Code.Configs;
 using Leopotam.Ecs;
 
 namespace Code.Gameplay.Systems
@@ -8,6 +9,7 @@ namespace Code.Gameplay.Systems
         private readonly EcsFilter<Navigation, PlayerTag> _player = null;
         private readonly EcsFilter<InputVector> _input = null;
         private readonly EcsFilter<Attack> _attack = null;
+        private readonly PlayerCfg _playerCfg = null;
 
         public void Run()
         {
@@ -19,6 +21,7 @@ namespace Code.Gameplay.Systems
                 foreach (var pdx in _player)
                 {
                     ref var navigation = ref _player.Get1(pdx).Value;
+                    navigation.speed = _playerCfg.Speed;
                     navigation.destination = point;
                 }
             }

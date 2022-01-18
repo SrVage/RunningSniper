@@ -20,6 +20,7 @@ namespace Code.Gameplay {
         [SerializeField] private UIScreen _uiScreen;
         [SerializeField] private PlayerCfg _playerCfg;
         [SerializeField] private EnemyCfg _enemyCfg;
+        [SerializeField] private BulletCfg _bulletCfg;
         void Start () {
             // void can be switched to IEnumerator for support coroutines.
             
@@ -32,6 +33,7 @@ namespace Code.Gameplay {
 #endif
             _systems
                 // register your systems here, for example:
+                .Add(new ResetGameSystem())
                 .Add(new GameInitialSystem())
                 .Add (new ChangeStateSystem ())
                 .Add(new StateMachine())
@@ -46,8 +48,11 @@ namespace Code.Gameplay {
                 .Add(new ChangeCameraSystem())
                 .Add(new ChangeFireButtonVisibleSystem())
                 .Add(new RotateAttackSystem())
-                .Add(new AttackSystem(Camera.main))
-                .Add(new EnableRagdollSystem())
+                .Add(new ShotSystem(Camera.main))
+                .Add(new ShotEffectSystem())
+                .Add(new EnemyDamageSystem())
+                .Add(new RechargeTimeSystem())
+
 
                 // .Add (new TestSystem2 ())
                 
@@ -57,12 +62,14 @@ namespace Code.Gameplay {
                 .OneFrame<TapToStart>()
                 .OneFrame<InputVector>()
                 .OneFrame<InputVectorScreen>()
+                .OneFrame<Shot>()
                 
                 // inject service instances here (order doesn't important), for example:
                 .Inject (_levels)
                 .Inject(_uiScreen)
                 .Inject(_playerCfg)
                 .Inject(_enemyCfg)
+                .Inject(_bulletCfg)
                 // .Inject (new NavMeshSupport ())
                 .Init ();
         }
