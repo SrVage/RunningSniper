@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Code.Gameplay.Systems
 
 {
-    public class ChangeStateSystem : IEcsRunSystem
+    public sealed class ChangeStateSystem : IEcsRunSystem
     {
         private readonly EcsFilter<TapToStart> _startLevelSignal;
         private readonly EcsWorld _world;

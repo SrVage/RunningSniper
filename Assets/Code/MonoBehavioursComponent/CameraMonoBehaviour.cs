@@ -6,7 +6,7 @@ using Camera = Code.Components.Camera;
 
 namespace Code.MonoBehavioursComponent
 {
-    public class CameraMonoBehaviour:MonoBehavioursEntity
+    public sealed class CameraMonoBehaviour:MonoBehavioursEntity
     {
         [SerializeField] private CinemachineVirtualCamera _cinemachine;
         public override void Initial(EcsEntity entity, EcsWorld world)

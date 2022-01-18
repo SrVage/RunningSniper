@@ -15,6 +15,7 @@ namespace Code.Gameplay {
 
         [SerializeField] private LevelList _levels;
         [SerializeField] private UIScreen _uiScreen;
+        [SerializeField] private PlayerCfg _playerCfg;
         void Start () {
             // void can be switched to IEnumerator for support coroutines.
             
@@ -27,10 +28,13 @@ namespace Code.Gameplay {
 #endif
             _systems
                 // register your systems here, for example:
+                .Add(new GameInitialSystem())
                 .Add (new ChangeStateSystem ())
                 .Add(new StateMachine())
                 .Add(new LoadLevelSystem())
                 .Add(new ChangeScreenSystem())
+                .Add(new CreatePlayerSystem())
+                .Add(new BindCameraSystem())
 
                 // .Add (new TestSystem2 ())
                 
@@ -42,6 +46,7 @@ namespace Code.Gameplay {
                 // inject service instances here (order doesn't important), for example:
                 .Inject (_levels)
                 .Inject(_uiScreen)
+                .Inject(_playerCfg)
                 // .Inject (new NavMeshSupport ())
                 .Init ();
         }
