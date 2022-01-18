@@ -20,6 +20,7 @@ namespace Code.Gameplay.Systems
                 {
                     ref var camera = ref _camera.Get1(cdx).Value;
                     camera.Follow = playerTransform;
+                    camera.LookAt = playerTransform;
                 }
                 playerEntity.Del<BindCameraTag>();
             }

@@ -1,3 +1,4 @@
+using Code.Components;
 using Code.Configs;
 using Code.Gameplay.Systems;
 using Code.LevelsLoader;
@@ -35,6 +36,8 @@ namespace Code.Gameplay {
                 .Add(new ChangeScreenSystem())
                 .Add(new CreatePlayerSystem())
                 .Add(new BindCameraSystem())
+                .Add(new InputSystem())
+                .Add(new PlayerMoveSystem())
 
                 // .Add (new TestSystem2 ())
                 
@@ -42,6 +45,7 @@ namespace Code.Gameplay {
                 .OneFrame<ChangeState> ()
                 .OneFrame<LoadLevelSignal> ()
                 .OneFrame<TapToStart>()
+                .OneFrame<InputVector>()
                 
                 // inject service instances here (order doesn't important), for example:
                 .Inject (_levels)
